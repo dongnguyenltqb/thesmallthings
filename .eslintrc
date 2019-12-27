@@ -1,0 +1,20 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "extensions": [".md", ".mdx"],
+    "markdownExtensions": [".md", ".mdx"]
+  },
+  "extends": [
+    "standard",
+    "standard-react",
+    "plugin:prettier/recommended",
+    "plugin:mdx/recommended"
+  ],
+  "plugins": ["react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off"
+  }
+}

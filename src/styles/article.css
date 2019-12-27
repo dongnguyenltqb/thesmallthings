@@ -1,0 +1,114 @@
+article {
+  @apply mx-auto max-w-line-length;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold leading-tight;
+
+    & > a {
+      @apply pl-1 leading-none;
+
+      & > svg {
+        @apply inline stroke-current text-cinder;
+      }
+    }
+
+    @screen desktop {
+      & > a {
+        @apply float-left pr-1 -ml-5;
+
+        & > svg {
+          @apply invisible;
+        }
+      }
+
+      &:hover > a {
+        & > svg {
+          @apply visible;
+        }
+      }
+    }
+  }
+
+  h1 {
+    @apply mt-8 text-3xl;
+
+    @screen tablet {
+      @apply text-5xl;
+    }
+
+    @screen desktop {
+      @apply text-6xl;
+    }
+  }
+
+  h2 {
+    @apply text-2xl;
+
+    @screen tablet {
+      @apply text-3xl;
+    }
+
+    @screen desktop {
+      @apply text-4xl;
+    }
+
+    + h3 {
+      @apply mt-6;
+    }
+  }
+
+  h3 {
+    @apply text-lg;
+
+    @screen tablet {
+      @apply text-xl;
+    }
+
+    @screen desktop {
+      @apply text-2xl;
+    }
+  }
+
+  p,
+  li {
+    @apply mt-4 leading-relaxed;
+
+    @screen tablet {
+      @apply text-lg;
+    }
+
+    @screen desktop {
+      @apply text-xl;
+    }
+
+    + h2,
+    + h3 {
+      @apply mt-8;
+    }
+  }
+
+  ol {
+    @apply mt-4 list-decimal list-inside;
+  }
+
+  ul {
+    @apply mt-4 list-disc list-inside;
+  }
+
+  li {
+    @apply mt-1;
+  }
+
+  pre {
+    font-size: 13.5px;
+    word-spacing: normal;
+    tab-size: 2;
+    hyphens: none;
+    @apply relative font-medium text-left break-normal whitespace-pre;
+  }
+}

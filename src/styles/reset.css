@@ -1,0 +1,28 @@
+:root {
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+html {
+  font-size: 16px;
+  -webkit-tap-highlight-color: transparent;
+  @apply font-sans antialiased;
+
+  ::selection {
+    @apply bg-columbia;
+  }
+}
+
+@supports (font-variation-settings: normal) {
+  html {
+    @apply font-sans-alt;
+    font-feature-settings: "cpsp", "frac", "ss01", "cv05", "cv08", "cv11",
+      "calt", "liga", "kern";
+  }
+}
