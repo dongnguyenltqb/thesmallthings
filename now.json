@@ -1,4 +1,10 @@
 {
   "version": 2,
-  "name": "The Small Things"
+  "name": "The Small Things",
+  "build": {
+    "env": {
+      "CHAT_ID": "@thesmallthings-chat-id",
+      "BOT_TOKEN": "@thesmallthings-bot-token"
+    }
+  }
 }
