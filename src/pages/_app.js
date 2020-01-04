@@ -13,7 +13,7 @@ export default class extends App {
     const { Component, pageProps } = this.props
     return (
       <React.StrictMode>
-        <div className="w-full h-screen bg-white text-cinder light">
+        <div className="w-full text-black bg-white">
           <Sidebar menus={menus} className="hidden desktop:flex" />
           <main className="pb-16 desktop:ml-64">
             <Component {...pageProps} />

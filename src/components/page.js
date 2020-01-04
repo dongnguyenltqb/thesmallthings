@@ -4,12 +4,12 @@ import { pageTranstion } from "../constants"
 
 export default function Page(props) {
   return (
-    <motion.main
+    <motion.div
       {...props}
       variants={pageTranstion}
       initial="incoming"
       animate="enter"
-      className="p-4 sm:p-6"
+      className="p-4 tablet:p-6"
     />
   )
 }

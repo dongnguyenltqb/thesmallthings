@@ -12,8 +12,8 @@ export default function Menu({ menus }) {
               className={classnames(
                 "flex items-center h-10 px-6 tracking-wide",
                 {
-                  "text-cinder hover:bg-solitude-214": !active,
-                  "bg-ocean hover:bg-ocean text-white": active,
+                  "text-black hover:bg-mid-gray": !active,
+                  "bg-primary hover:bg-primary text-white": active,
                 },
               )}
             >

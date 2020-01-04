@@ -1,10 +1,11 @@
+import NextLink from "next/link"
 import classnames from "classnames"
 
 const CodeBlock = ({ children, filename }) => {
   return (
     <div
       className={classnames(
-        "my-10 pb-4 overflow-x-auto border border-solitude-214 rounded",
+        "my-10 pb-4 overflow-x-auto border border-solitude-214",
         {
           "pt-12": filename,
           "pt-4": !filename,
@@ -49,20 +50,27 @@ const Paragraph = ({ children, ...props }) => {
   return <p {...props}>{children}</p>
 }
 
-const Link = ({ children, ...props }) => {
-  if (children.length < 1) {
+const Link = ({ href, ...props }) => {
+  if (props.children.length < 1) {
     return null
   }
 
+  if (!href.startsWith("/")) {
+    return (
+      <a
+        {...props}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="no-underline text-primary"
+      />
+    )
+  }
+
   return (
-    <a
-      {...props}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="no-underline text-ocean"
-    >
-      {children}
-    </a>
+    <NextLink href={href}>
+      <a {...props} className="no-underline text-primary" />
+    </NextLink>
   )
 }
 

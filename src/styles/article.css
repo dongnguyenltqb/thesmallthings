@@ -13,7 +13,7 @@ article {
       @apply pl-1 leading-none;
 
       & > svg {
-        @apply inline stroke-current text-cinder;
+        @apply inline stroke-current text-black;
       }
     }
 
@@ -75,7 +75,8 @@ article {
   }
 
   p,
-  li {
+  li,
+  em {
     @apply mt-4 leading-relaxed;
 
     @screen tablet {

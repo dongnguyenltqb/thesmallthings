@@ -10,7 +10,7 @@ export default function Post(meta) {
       <MDXProvider components={components}>
         <Page>
           <article>
-            <h1>{meta.title}</h1>
+            {meta && <h1 className="mb-2">{meta.title}</h1>}
             {children}
           </article>
         </Page>
