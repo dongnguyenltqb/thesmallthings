@@ -38,7 +38,10 @@ export default function ContactForm({ children, ...props }) {
     })
       .then(() => setState({ sent: true, name: values.name }))
       .catch(err => actions.setFieldError("server", err.message))
-      .finally(() => actions.setSubmitting(false))
+      .finally(() => {
+        actions.setSubmitting(false)
+        actions.resetForm()
+      })
   }
 
   if (state.sent) {
