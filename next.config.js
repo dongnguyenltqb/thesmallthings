@@ -21,7 +21,7 @@ const withMDX = nextMDX({
             tagName: "svg",
             properties: {
               className: "fill-current",
-              width: 16,
+              width: 24,
               height: 16,
             },
             children: [

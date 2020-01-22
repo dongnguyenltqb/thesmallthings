@@ -3,8 +3,8 @@
   "name": "The Small Things",
   "build": {
     "env": {
-      "CHAT_ID": "@thesmallthings-chat-id",
-      "BOT_TOKEN": "@thesmallthings-bot-token"
+      "CHAT_ID": "@thesmallthings.chat-id",
+      "BOT_TOKEN": "@thesmallthings.bot-token"
     }
   }
 }

@@ -38,10 +38,23 @@ export default function ContactForm({ children, ...props }) {
     })
       .then(() => setState({ sent: true, name: values.name }))
       .catch(err => actions.setFieldError("server", err.message))
+      .finally(() => actions.setSubmitting(false))
   }
 
   if (state.sent) {
-    return <p>Thanks {state.name}. Your message has been sent.</p>
+    return (
+      <p>
+        Thanks {state.name}. <br /> Your message has been sent.
+        <svg
+          width="24"
+          height="48"
+          className="stroke-current"
+          strokeWidth={1.5}
+        >
+          <use xlinkHref="/assets/icons.svg#smile" />
+        </svg>
+      </p>
+    )
   }
 
   return (

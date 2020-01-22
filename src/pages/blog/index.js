@@ -15,11 +15,13 @@ export default function BlogListing() {
             <Link href={meta.link} key={index}>
               <a>
                 <li className="mt-10 text-xl">
-                  <h2 className="text-4xl font-bold leading-tight">
+                  <time className="text-sm">{meta.published_date}</time>
+                  <h2 className="text-xl font-bold leading-tight tablet:text-2xl desktop:text-4xl hover:text-primary">
                     {meta.title}
                   </h2>
-                  <time className="text-sm">{meta.published_date}</time>
-                  <p className="mt-2">{meta.excerpt}</p>
+                  <p className="mt-1 text-base tablet:text-lg desktop:text-xl">
+                    {meta.excerpt}
+                  </p>
                 </li>
               </a>
             </Link>

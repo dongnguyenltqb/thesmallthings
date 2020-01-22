@@ -5,7 +5,7 @@ const CodeBlock = ({ children, filename }) => {
   return (
     <div
       className={classnames(
-        "my-10 pb-4 overflow-x-auto border border-solitude-214",
+        "mb-10 mt-4 pb-4 overflow-x-auto border border-mid-gray rounded-sm",
         {
           "pt-12": filename,
           "pt-4": !filename,
@@ -13,13 +13,13 @@ const CodeBlock = ({ children, filename }) => {
       )}
     >
       {filename && (
-        <div className="absolute top-0 left-0 flex items-center w-full h-10 px-4">
+        <div className="absolute top-0 left-0 flex items-center w-full h-10 px-4 select-none">
           <div className="flex items-center">
             <svg width="54" height="14">
               <use xlinkHref="/assets/icons.svg#control" />
             </svg>
           </div>
-          <div className="flex-1 text-center">{filename}</div>
+          <div className="flex-1 text-center text-dark-gray">{filename}</div>
         </div>
       )}
       <code className="block float-left min-w-full px-4">{children}</code>
@@ -29,10 +29,10 @@ const CodeBlock = ({ children, filename }) => {
 
 const Image = ({ title, ...props }) => {
   return (
-    <figure className="flex flex-col items-center max-w-full py-4">
+    <figure className="flex flex-col items-center max-w-full my-10 tablet:my-12 desktop:my-16">
       <img {...props} />
       {title && (
-        <figcaption className="px-2 mt-1 text-xs tracking-wide text-center tablet:text-sm desktop:text-base">
+        <figcaption className="px-2 mt-4 text-xs tracking-wide text-center tablet:text-sm desktop:text-base">
           {title}
         </figcaption>
       )}

@@ -21,10 +21,10 @@ export default async (req, res) => {
     body: JSON.stringify({
       chat_id: process.env.chatId,
       parse_mode: "Markdown",
-      text: `"${message}"\n— [${name}](${email})`,
+      text: `“${message}”\n— ${name} <${email}>`,
     }),
   })
     .then(response => response.json())
-    .then(data => res.status(data.status || 200).json(data))
-    .catch(err => res.status(200).json(err))
+    .then(data => res.status(data.status).json(data))
+    .catch(err => res.status(500).json(err))
 }

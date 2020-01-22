@@ -13,7 +13,7 @@ module.exports = {
       columbia: "#ADD6FF",
     },
     fontFamily: {
-      mono: ['"SF Mono"', '"IBM Plex Mono"', "monospace"],
+      mono: ['"SF Mono"', '"Roboto Mono"', "monospace"],
       sans: ["Inter", "sans-serif"],
       "sans-alt": ['"Inter var"', "sans-serif"],
     },
