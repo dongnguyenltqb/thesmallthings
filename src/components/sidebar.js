@@ -7,11 +7,11 @@ export default function Sidebar({ menus = [], ...props }) {
     <nav
       {...props}
       className={classnames(
-        "fixed top-0 left-0 w-64 h-full z-50 flex flex-col border-r border-solitude-214 bg-solitude-210",
+        "fixed top-0 left-0 w-64 h-full z-50 flex flex-col border-r border-mid-gray bg-light-gray",
         props.className,
       )}
     >
-      <div className="flex items-center h-24 px-6 border-b border-solitude-214">
+      <div className="flex items-center h-24 px-6 border-b border-mid-gray">
         <img
           className="w-12 h-12 rounded-full"
           src="/assets/images/me.jpg"

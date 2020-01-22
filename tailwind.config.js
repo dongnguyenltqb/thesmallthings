@@ -1,18 +1,19 @@
 module.exports = {
   theme: {
     colors: {
-      cinder: "#24292E",
-      columbia: "#ADD6FF",
-      ocean: "#1366E9",
-      raven: "#6A737D",
       white: "#FFFFFF",
-      solitude: {
-        210: "#FAFBFC",
-        214: "#E1E4E8",
-      },
+      black: "#24292E",
+      "dark-gray": "#6A737D",
+      "mid-gray": "#E1E4E8",
+      "light-gray": "#FAFBFC",
+      primary: "#1366E9",
+      success: "#6EDC38",
+      error: "#ED2626",
+      warning: "#F6B951",
+      columbia: "#ADD6FF",
     },
     fontFamily: {
-      mono: ['"SF Mono"', '"IBM Plex Mono"', "monospace"],
+      mono: ['"SF Mono"', '"Roboto Mono"', "monospace"],
       sans: ["Inter", "sans-serif"],
       "sans-alt": ['"Inter var"', "sans-serif"],
     },
@@ -26,6 +27,10 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    backgroundColor: ["responsive", "hover", "focus", "disabled"],
+    textColor: ["responsive", "hover", "focus", "disabled"],
+    borderColor: ["responsive", "hover", "focus", "disabled"],
+  },
   plugins: [],
 }

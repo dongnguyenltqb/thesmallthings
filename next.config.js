@@ -1,3 +1,4 @@
+require("dotenv").config()
 const nextMDX = require("@next/mdx")
 const withCSS = require("@zeit/next-css")
 const remarkImages = require("remark-images")
@@ -20,7 +21,7 @@ const withMDX = nextMDX({
             tagName: "svg",
             properties: {
               className: "fill-current",
-              width: 16,
+              width: 24,
               height: 16,
             },
             children: [
@@ -43,6 +44,11 @@ const nextConfig = {
     autoPrerender: false,
   },
   pageExtensions: ["js", "md", "mdx"],
+  poweredByHeader: false,
+  env: {
+    chatId: process.env.CHAT_ID,
+    botToken: process.env.BOT_TOKEN,
+  },
 }
 
 module.exports = withCSS(withMDX(nextConfig))

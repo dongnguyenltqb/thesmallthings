@@ -7,7 +7,7 @@ export default function BottomNavigation({ menus, ...props }) {
     <nav
       {...props}
       className={classnames(
-        "fixed bottom-0 left-0 w-full h-16 bg-white border-t border-solitude-214 select-none",
+        "fixed bottom-0 left-0 w-full h-16 bg-white border-t border-mid-gray select-none",
         props.className,
       )}
     >
@@ -20,8 +20,8 @@ export default function BottomNavigation({ menus, ...props }) {
                   className={classnames(
                     "flex flex-col items-center justify-center w-16 h-16 relative",
                     {
-                      "text-cinder": !active,
-                      "text-ocean": active,
+                      "text-black": !active,
+                      "text-primary": active,
                     },
                   )}
                 >

@@ -7,6 +7,7 @@ const Home = () => (
     <Head>
       <title>Home</title>
     </Head>
+    <p>Work in progress...</p>
   </Page>
 )
 

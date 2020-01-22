@@ -1,0 +1,236 @@
+import Post from "../../components/blog/post"
+
+export const meta = {
+  published_date: "January 22, 2020",
+  title: "How to use Telegram Bot for Contact Form",
+  excerpt: "I have a form. I have Telegram. Uh! Telegram Form.",
+  link: "/blog/the-small-bot",
+}
+
+export default Post(meta)
+
+After deleting my Facebook account, I came back using Telegram as the main contact point.
+When building this _"small universe"_, I find out that I can use Telegram API for sending messages.
+A light bulb goes off in my head with an idea, using Telegram Bot for the Contact Form, below is the building progress.
+
+## Telegram Settings
+
+### Bot
+
+Create a Telegram Bot is very simple. Telegram has another bot handling that process. Its name is [BotFather](https://t.me/botfather). All I have to do is type some commands.
+
+![Using /newbot command to create a new bot](/blog/the-small-bot/new-bot.png "Creat a Bot with BotFather")
+
+After creating Bot, I receive an authentication token for using the Bots API. It looks like `992219941:AAEEoFKKPN1qJWYZkVoujOFcHysITXa8uAY`. I’ll call `<token>` from now on.
+
+### Channel
+
+According to the API documentation, I need a `chat_id` of a Channel. The main reason is that a Bot cannot send direct messages to a User.
+
+> `chat_id`: Unique identifier for the target chat or username of the target channel (in the format `@channelusername`)
+>
+> <https://core.telegram.org/bots/api>
+
+When I have created a Channel, the first thing to do is give Administrator permission to the Bot.
+
+![Permission options](/blog/the-small-bot/bot-admin.png "Set permission for the Bot")
+
+To find `chat_id`, I go to Group Type. A Channel is set to Private mode by default. It has a sharable link to join the group below, something like `https://t.me/joinchat/<id>`.
+
+At first, I’m quite sure that the `<id>` here is `chat_id`, but when I put it into the API call, it fails immediately. After a lot of attempts, the only way to get the format `@channelusername` is to set Group Type to Public mode. So that I can have the channel `username` as purpose. For me, `chat_id` will be `@TheSmallUniverse`.
+
+![Group Type configuration](/blog/the-small-bot/public-channel.png "Group Type in Public mode")
+
+### Telegram API
+
+Now I already have `<token>` and `chat_id`, the next step is to connect the API. Follow the documentation, [Send Message API](https://core.telegram.org/bots/api#sendmessage) is the only API that I need.
+
+```sh filename=Terminal
+curl --location --request POST 'https://api.telegram.org/bot<token>/sendMessage' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "chat_id": "@TheSmallUniverse",
+    "text": "Hello Darkness, my old friend!"
+}'
+```
+
+And here is the response I get when running the command. There is a different detail, `chat_id` has changed to an Integer `-1001258275042`.
+
+```json
+{
+  "ok": true,
+  "result": {
+    "message_id": 5,
+    "from": {
+      "id": 992219941,
+      "is_bot": true,
+      "first_name": "The Small Bot",
+      "username": "TheSmallBot"
+    },
+    "chat": {
+      "id": -1001258275042,
+      "title": "The Small Universe",
+      "username": "TheSmallUniverse",
+      "type": "supergroup"
+    },
+    "date": 1578890703,
+    "text": "Hello Darkness, my old friend!"
+  }
+}
+```
+
+## Contact Form
+
+The settings for Telegram is done. I need a UI to apply that functionality, nothing better than a Contact Form.
+
+### User Interface
+
+A meaningful message needs to have sender name, email and message content. As Telegram supports message formatting (Markdown & HTML), I come up with this interface.
+
+![A form with two text fields, one textarea and a submit button](/blog/the-small-bot/contact-form-ui.png "Contact Form UI")
+
+On the client-side, I use [Formik](https://jaredpalmer.com/formik/) – a form validation library. When submitting the form, it calls an internal API, which is a simple serverless function.
+
+### Serverless Function
+
+I use Next.js, which supports [API Routes](https://nextjs.org/docs/api-routes/introduction) out of the box.
+If I don’t use Next.js, I could do this functionality with [Zeit Serverless Functions](https://zeit.co/docs/v2/serverless-functions/introduction) or [Netlify Functions](https://functions.netlify.com/).
+
+The function looks like this:
+
+```js filename=pages/api/messages.js
+import fetch from "isomorphic-unfetch"
+
+export default async (req, res) => {
+  const { name, message, email } = req.body
+
+  if (!name || !message || !email) {
+    res.status(400).json({
+      ok: false,
+      status: 400,
+      message: "Missing required fields",
+    })
+
+    return
+  }
+
+  fetch(`https://api.telegram.org/bot${process.env.botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      // This is important!
+      // If I don’t include this information,
+      // Telegram will not understand the request
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      // I want to use Markdown syntax to format the message
+      // https://core.telegram.org/bots/api#formatting-options
+      parse_mode: "Markdown",
+      chat_id: process.env.chatId,
+      text: `"${message}"\n— [${name}](${email})`,
+    }),
+  })
+    .then(response => response.json())
+    .then(data => res.status(data.status).json(data))
+    .catch(err => res.status(500).json(err))
+}
+```
+
+During local development, I create a `.env` file at the root of the project directory. It contains environment variables values.
+
+```sh filename=.env
+CHAT_ID="@TheSmallUniverse"
+BOT_TOKEN="992219941:AAEEoFKKPN1qJWYZkVoujOFcHysITXa8uAY"
+```
+
+For production, I add these values to [Now Secrets](https://zeit.co/docs/v2/build-step#using-environment-variables-and-secrets). They will be available at Build Time.
+As I use Zeit Now service, all I have to do is config `now.json` file.
+
+```json filename=now.json
+{
+  "version": 2,
+  "name": "The Small Things",
+  "build": {
+    "env": {
+      "CHAT_ID": "@thesmallthings.chat-id",
+      "BOT_TOKEN": "@thesmallthings.bot-token"
+    }
+  }
+}
+```
+
+Then declare `botToken` and `chatId` in the `next.config.js` as environment variables.
+
+```js filename=next.config.js
+// Use `dotenv` for local .env file
+require("dotenv").config()
+
+const nextConfig = {
+  env: {
+    chatId: process.env.CHAT_ID,
+    botToken: process.env.BOT_TOKEN,
+  },
+}
+```
+
+## Set Private mode for Channel
+
+In my case, I don’t want to expose those messages for anyone in Telegram, so I set the channel to Private mode.
+
+At first, the [Send Message API](https://core.telegram.org/bots/api#sendmessage) doesn’t accept `@TheSmallUniverse` as `chat_id`.
+Because when moving Channel to Private mode, its sharable link has changed. So the old `chat_id` won’t be available anymore.
+Luckily, I have the Integer `chat_id` from the previous API call.
+
+```json
+{
+  "chat": {
+    "id": -1001258275042,
+    "title": "The Small Universe",
+    "username": "TheSmallUniverse",
+    "type": "supergroup"
+  }
+}
+```
+
+Replace that value to `.env` file, the function works as expected.
+
+```sh filename=.env
+CHAT_ID="-1001258275042"
+BOT_TOKEN="992219941:AAEEoFKKPN1qJWYZkVoujOFcHysITXa8uAY"
+```
+
+But then, when I try to update Now Secrets for `chat_id`, I get this error
+
+```sh filename=Terminal
+now secret add thesmallthings.chat-id -1001258275042
+> Error! Invalid number of arguments. Usage: `now secret add <name> <value>`
+```
+
+That's because the secret value cannot contain the dash character.
+After searching for a while, I come across [this solution](https://github.com/zeit/now/issues/749#issuecomment-533873759).
+
+At the root of the project directory, I create a `chat-id.txt` file, its content is the `chat_id` value.
+Then update the command to use that file:
+
+```sh filename=Terminal
+now secret add -- thesmallthings.chat-id "`cat chat-id.txt`"
+> Success! Secret thesmallthings.chat-id added [762ms]
+```
+
+The `cat chat-id.txt` takes the content of the `chat-id.txt` file and pastes it into the command line for me.
+
+## What happens when a user submits the form?
+
+Everything looks good to me. It's time to see how it works in real life.
+
+<video autoPlay muted controls loop>
+  <source src="/blog/the-small-bot/contact.mp4" type="video/mp4" />
+  <p>
+    Your browser doesn't support HTML5 video. Here is a{" "}
+    <a href="/blog/the-small-bot/contact.mp4">link to the video</a> instead.
+  </p>
+</video>
+
+Perfect!
+
+This feature may be too overkill for a contact form, but who doesn’t love creating things or the process of learning something new?
