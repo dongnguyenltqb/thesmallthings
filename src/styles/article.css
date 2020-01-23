@@ -1,40 +1,30 @@
 article {
   @apply mx-auto max-w-line-length;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  & h1,
+  & h2,
+  & h3 {
     @apply relative font-bold leading-tight;
+  }
 
-    & > a {
-      @apply pl-1 leading-none;
-
-      & > svg {
-        @apply inline text-black stroke-current;
-      }
+  & h2,
+  & h3 {
+    & svg {
+      @apply hidden;
     }
 
     @screen desktop {
-      & > a {
-        @apply absolute top-0 left-0 pl-0 pr-1;
+      & a:hover {
+        @apply border-b border-black;
 
-        & > svg {
-          @apply invisible;
-        }
-      }
-
-      &:hover > a {
-        & > svg {
-          @apply visible;
+        & + svg {
+          @apply inline-block ml-2;
         }
       }
     }
   }
 
-  h1 {
+  & h1 {
     @apply mt-8 text-3xl;
 
     @screen tablet {
@@ -46,7 +36,7 @@ article {
     }
   }
 
-  h2 {
+  & h2 {
     @apply mt-8 text-2xl;
 
     @screen tablet {
@@ -58,7 +48,7 @@ article {
     }
   }
 
-  h3 {
+  & h3 {
     @apply mt-8 text-lg;
 
     @screen tablet {
@@ -70,9 +60,9 @@ article {
     }
   }
 
-  p,
-  li,
-  em {
+  & p,
+  & li,
+  & em {
     @apply mt-4 leading-relaxed;
 
     @screen tablet {
@@ -84,32 +74,32 @@ article {
     }
   }
 
-  ol {
+  & ol {
     @apply mt-4 list-decimal list-inside;
   }
 
-  ul {
+  & ul {
     @apply mt-4 list-disc list-inside;
   }
 
-  li {
+  & li {
     @apply mt-1;
   }
 
-  pre {
+  & pre {
     font-size: 13.5px;
     word-spacing: normal;
     tab-size: 2;
     hyphens: none;
     @apply relative font-mono font-medium text-left break-normal;
 
-    code::before,
-    code::after {
+    & code::before,
+    & code::after {
       display: none;
     }
   }
 
-  code {
+  & code {
     @apply break-words text-dark-gray;
     font-family: inherit;
 
@@ -120,16 +110,16 @@ article {
   }
 
   @supports (font-variation-settings: normal) {
-    code {
+    & code {
       font-feature-settings: inherit;
     }
   }
 
-  a > code {
+  & a > code {
     @apply text-primary;
   }
 
-  blockquote {
+  & blockquote {
     @apply py-2 pl-4 my-2 italic border-l-4 border-columbia;
 
     & > *:first-child {
@@ -144,7 +134,7 @@ article {
     }
   }
 
-  video {
+  & video {
     @apply my-10;
   }
 }

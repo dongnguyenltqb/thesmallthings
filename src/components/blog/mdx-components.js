@@ -74,9 +74,25 @@ const Link = ({ href, ...props }) => {
   )
 }
 
+const Heading = ({ as: Component }) => ({ children, id }) => {
+  return (
+    <Component>
+      <span id={id} className="absolute invisible block pt-8 -mt-8" />
+      <a key="content" href={`#${id}`}>
+        {children}
+      </a>
+      <svg key="anchor" width="16" height="24" strokeWidth="1.5">
+        <use xlinkHref="/assets/icons.svg#link" />
+      </svg>
+    </Component>
+  )
+}
+
 export default {
   code: CodeBlock,
   img: Image,
   p: Paragraph,
   a: Link,
+  h2: Heading({ as: "h2" }),
+  h3: Heading({ as: "h3" }),
 }

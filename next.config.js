@@ -1,39 +1,15 @@
 require("dotenv").config()
 const nextMDX = require("@next/mdx")
-const withCSS = require("@zeit/next-css")
 const remarkImages = require("remark-images")
 const rehypeSlug = require("rehype-slug")
 const rehypeShiki = require("rehype-shiki")
-const rehypeAutoLink = require("rehype-autolink-headings")
 
 const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
     rehypePlugins: [
-      [rehypeShiki, { theme: "./src/code-theme.json" }],
       rehypeSlug,
-      [
-        rehypeAutoLink,
-        {
-          behavior: "append",
-          content: {
-            type: "element",
-            tagName: "svg",
-            properties: {
-              className: "fill-current",
-              width: 24,
-              height: 16,
-            },
-            children: [
-              {
-                type: "element",
-                tagName: "use",
-                properties: { xlinkHref: "/assets/icons.svg#link" },
-              },
-            ],
-          },
-        },
-      ],
+      [rehypeShiki, { theme: "./src/code-theme.json" }],
     ],
     remarkPlugins: [remarkImages],
   },
@@ -51,4 +27,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withCSS(withMDX(nextConfig))
+module.exports = withMDX(nextConfig)
