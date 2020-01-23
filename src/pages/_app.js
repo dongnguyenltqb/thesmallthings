@@ -3,12 +3,12 @@ import App from "next/app"
 import Head from "next/head"
 
 import "../styles/index.css"
+import SEO from "../components/seo"
 import Sidebar from "../components/sidebar"
 import Nprogress from "../components/nprogress"
 import BottomNavigation from "../components/bottom-navigation"
 
 import { menus } from "../constants"
-import SEO from "../components/seo"
 
 export default class extends App {
   render() {
