@@ -12,7 +12,7 @@ export default function SEO({
   title = config.title,
   description = config.description,
   image = config.image,
-  slug,
+  slug = "/",
 }) {
   const url = `${config.url}${slug}`
   const previewImage = `${config.url}${image}`
@@ -20,23 +20,43 @@ export default function SEO({
     <Head>
       {/* General tags */}
       <title>{title}</title>
-      <meta name="title" content={title} />
-      <meta name="description" content={description} />
-      <meta name="image" content={previewImage} />
+      <meta key="title" name="title" content={title} />
+      <meta key="description" name="description" content={description} />
+      <meta key="image" name="image" content={previewImage} />
 
       {/* OpenGraph tags */}
-      <meta property="og:url" content={url} />
-      <meta property="og:type" content={slug ? "article" : "website"} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={previewImage} />
+      <meta key="og:url" property="og:url" content={url} />
+      <meta
+        key="og:type"
+        property="og:type"
+        content={slug ? "article" : "website"}
+      />
+      <meta key="og:title" property="og:title" content={title} />
+      <meta
+        key="og:description"
+        property="og:description"
+        content={description}
+      />
+      <meta key="og:image" property="og:image" content={previewImage} />
 
       {/* Twitter Card tags */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content={config.author} />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={previewImage} />
+      <meta
+        key="twitter:card"
+        name="twitter:card"
+        content="summary_large_image"
+      />
+      <meta
+        key="twitter:creator"
+        name="twitter:creator"
+        content={config.author}
+      />
+      <meta key="twitter:title" name="twitter:title" content={title} />
+      <meta
+        key="twitter:description"
+        name="twitter:description"
+        content={description}
+      />
+      <meta key="twitter:image" name="twitter:image" content={previewImage} />
     </Head>
   )
 }
