@@ -12,15 +12,15 @@ export default function BlogListing() {
       <div className="mx-auto max-w-line-length">
         <ul>
           {postList.map(({ meta }, index) => (
-            <Link href={meta.link} key={index}>
+            <Link href={meta.slug} key={index}>
               <a>
                 <li className="mt-10 text-xl">
-                  <time className="text-sm">{meta.published_date}</time>
+                  <time className="text-sm">{meta.date}</time>
                   <h2 className="text-xl font-bold leading-tight tablet:text-2xl desktop:text-4xl hover:text-primary">
                     {meta.title}
                   </h2>
                   <p className="mt-1 text-base tablet:text-lg desktop:text-xl">
-                    {meta.excerpt}
+                    {meta.description}
                   </p>
                 </li>
               </a>
