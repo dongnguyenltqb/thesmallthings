@@ -74,9 +74,30 @@ const Link = ({ href, ...props }) => {
   )
 }
 
+const Heading = ({ children, id }) => {
+  return [
+    <a key="content" href={`#${id}`}>
+      {children}
+    </a>,
+    <svg key="anchor" width="16" height="24" strokeWidth="1.5">
+      <use xlinkHref="/assets/icons.svg#link" />
+    </svg>,
+  ]
+}
+
 export default {
   code: CodeBlock,
   img: Image,
   p: Paragraph,
   a: Link,
+  h2: props => (
+    <h2>
+      <Heading {...props} />
+    </h2>
+  ),
+  h3: props => (
+    <h3>
+      <Heading {...props} />
+    </h3>
+  ),
 }

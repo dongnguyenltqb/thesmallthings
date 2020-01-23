@@ -52,7 +52,7 @@ export default function ContactForm({ children, ...props }) {
           width="24"
           height="48"
           className="stroke-current"
-          strokeWidth={1.5}
+          strokeWidth="1.5"
         >
           <use xlinkHref="/assets/icons.svg#smile" />
         </svg>

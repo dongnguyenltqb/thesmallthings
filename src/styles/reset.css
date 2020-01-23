@@ -21,6 +21,7 @@ html {
     @apply bg-columbia;
   }
 }
+
 @supports (font-variation-settings: normal) {
   html,
   input,
