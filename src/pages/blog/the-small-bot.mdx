@@ -49,8 +49,8 @@ Now I already have `<token>` and `chat_id`, the next step is to connect the API.
 curl --location --request POST 'https://api.telegram.org/bot<token>/sendMessage' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "chat_id": "@TheSmallUniverse",
-    "text": "Hello Darkness, my old friend!"
+  "chat_id": "@TheSmallUniverse",
+  "text": "Hello Darkness, my old friend!"
 }'
 ```
 
@@ -98,7 +98,7 @@ If I don’t use Next.js, I could do this functionality with [Zeit Serverless Fu
 
 The function looks like this:
 
-```js filename=pages/api/messages.js
+```js filename=messages.js
 import fetch from "isomorphic-unfetch"
 
 export default async (req, res) => {
@@ -228,4 +228,4 @@ Everything looks good to me. It's time to see how it works in real life.
 
 Perfect!
 
-This feature may be too overkill for a contact form, but who doesn’t love creating things or the process of learning something new?
+This feature may be too overkill for a contact form, but who doesn’t love creating things or learning something new?
