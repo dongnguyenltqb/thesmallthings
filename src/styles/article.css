@@ -1,5 +1,5 @@
 article {
-  @apply mx-auto max-w-line-length;
+  @apply mx-auto break-words max-w-line-length;
 
   & h1,
   & h2,
@@ -91,7 +91,7 @@ article {
     word-spacing: normal;
     tab-size: 2;
     hyphens: none;
-    @apply relative font-mono font-medium text-left break-normal;
+    @apply relative font-mono font-medium text-left;
 
     & code::before,
     & code::after {
@@ -100,7 +100,7 @@ article {
   }
 
   & code {
-    @apply break-words text-dark-gray;
+    @apply text-dark-gray;
     font-family: inherit;
 
     &::before,
