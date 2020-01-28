@@ -11,7 +11,20 @@ export default Post(meta)
 
 I have deleted my Facebook account for 3 months. Now I use Telegram as the main contact point.
 When building this _"small universe"_ recently, I find out that I can use Telegram API for sending messages.
-A light bulb goes off in my head with an idea, using Telegram Bot for the Contact Form, below is the building progress.
+A light bulb goes off in my head with an idea, using Telegram Bot for the [Contact Form](/contact).
+
+## How it works
+
+<video autoPlay muted controls loop>
+  <source src="/blog/the-small-bot/contact.mp4" type="video/mp4" />
+  <p>
+    Your browser doesn't support HTML5 video. Here is a{" "}
+    <a href="/blog/the-small-bot/contact.mp4">link to the video</a> instead.
+  </p>
+</video>
+
+This feature may be too overkill for a simple contact form, but I love creating things or learning something new.
+Let’s jump into building progress.
 
 ## Telegram Settings
 
@@ -214,18 +227,9 @@ now secret add -- thesmallthings.chat-id "`cat chat-id.txt`"
 
 The `cat chat-id.txt` takes the content of the `chat-id.txt` file and pastes it into the command line for me.
 
-## What happens when a user submits the form?
+## What I’ve learned
 
-Everything looks good to me. It's time to see how it works in real life.
+Through the development journey, there are two new things to me:
 
-<video autoPlay muted controls loop>
-  <source src="/blog/the-small-bot/contact.mp4" type="video/mp4" />
-  <p>
-    Your browser doesn't support HTML5 video. Here is a{" "}
-    <a href="/blog/the-small-bot/contact.mp4">link to the video</a> instead.
-  </p>
-</video>
-
-Perfect!
-
-This feature may be too overkill for a contact form, but who doesn’t love creating things or learning something new?
+1. Telegram Bots API. It’s a fun thing to try, even though I only use a small part of the API. I will extend the bot in the future.
+2. Now Secrets cannot add values containing dashes for now.
