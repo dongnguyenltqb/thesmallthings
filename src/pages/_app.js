@@ -1,3 +1,5 @@
+import "lazysizes"
+import "lazysizes/plugins/attrchange/ls.attrchange"
 import React from "react"
 import App from "next/app"
 import Head from "next/head"
