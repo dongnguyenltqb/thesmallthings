@@ -27,10 +27,10 @@ const CodeBlock = ({ children, filename }) => {
   )
 }
 
-const Image = ({ title, ...props }) => {
+const Image = ({ title, src, ...props }) => {
   return (
     <figure className="flex flex-col items-center max-w-full my-10 tablet:my-12 desktop:my-16">
-      <img {...props} />
+      <img {...props} data-src={src} className="lazyload" />
       {title && (
         <figcaption className="px-2 mt-4 text-xs tracking-wide text-center tablet:text-sm desktop:text-base">
           {title}
