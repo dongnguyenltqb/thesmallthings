@@ -9,20 +9,20 @@
   },
   "headers": [
     {
-      "source": "/blog/**/(.*)",
+      "source": "/^/blog(?:/([^/#\\?]+?))(?:/(.*))[/#\\?]?$/i",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=2678400"
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     },
     {
-      "source": "/assets/**/(.*)",
+      "source": "/^/asset(?:/([^/#\\?]+?))(?:/(.*))[/#\\?]?$/i",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=2678400"
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }
