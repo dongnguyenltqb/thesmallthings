@@ -6,5 +6,25 @@
       "CHAT_ID": "@thesmallthings.chat-id",
       "BOT_TOKEN": "@thesmallthings.bot-token"
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "/blog/**/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2678400"
+        }
+      ]
+    },
+    {
+      "source": "/assets/**/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2678400"
+        }
+      ]
+    }
+  ]
 }
