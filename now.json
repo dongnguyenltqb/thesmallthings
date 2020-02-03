@@ -9,7 +9,7 @@
   },
   "headers": [
     {
-      "source": "/blog(/([^/#\\?]+?))(/(.*))[/#\\?]?$",
+      "source": "/blog/(*)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "source": "/asset(/([^/#\\?]+?))(/(.*))[/#\\?]?$",
+      "source": "/asset/(*)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
