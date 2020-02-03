@@ -13,8 +13,8 @@ export default function Sidebar({ menus = [], ...props }) {
     >
       <div className="flex items-center h-24 px-6 border-b border-mid-gray">
         <img
-          className="w-12 h-12 rounded-full"
-          src="/assets/images/me.jpg"
+          className="w-12 h-12 rounded-full lazyload"
+          data-src="/assets/images/me.jpg"
           alt="Avatar"
         />
         <div className="flex flex-col ml-2">

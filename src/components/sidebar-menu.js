@@ -4,11 +4,11 @@ import ActiveLink from "./active-link"
 
 export default function Menu({ menus }) {
   return (
-    <ul className="text-sm select-none">
+    <div className="text-sm select-none">
       {menus.map(item => (
         <ActiveLink href={item.path} key={item.path}>
           {active => (
-            <li
+            <div
               className={classnames(
                 "flex items-center h-10 px-6 tracking-wide",
                 {
@@ -26,10 +26,10 @@ export default function Menu({ menus }) {
                 <use xlinkHref={`/assets/icons.svg#${item.icon}`} />
               </svg>
               <p className="font-medium tracking-wide">{item.title}</p>
-            </li>
+            </div>
           )}
         </ActiveLink>
       ))}
-    </ul>
+    </div>
   )
 }

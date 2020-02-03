@@ -11,12 +11,12 @@ export default function BottomNavigation({ menus, ...props }) {
         props.className,
       )}
     >
-      <ul className="flex justify-between w-full max-w-sm px-2 mx-auto">
+      <div className="flex justify-between w-full max-w-sm px-2 mx-auto">
         {menus.map(item => {
           return (
             <ActiveLink key={item.path} href={item.path}>
               {active => (
-                <li
+                <div
                   className={classnames(
                     "flex flex-col items-center justify-center w-16 h-16 relative",
                     {
@@ -36,12 +36,12 @@ export default function BottomNavigation({ menus, ...props }) {
                   <h5 className="mt-1 text-xs font-medium tracking-wide">
                     {item.title}
                   </h5>
-                </li>
+                </div>
               )}
             </ActiveLink>
           )
         })}
-      </ul>
+      </div>
     </nav>
   )
 }
