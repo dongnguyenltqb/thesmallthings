@@ -15,6 +15,8 @@ html {
   font-size: 16px;
   line-height: 1.5;
   -webkit-tap-highlight-color: transparent;
+  /* Prevent adjustments of font size after orientation changes in iOS. */
+  -webkit-text-size-adjust: 100%;
   font-feature-settings: "cpsp", "frac", "salt", "ss02", "calt", "liga", "kern";
   @apply font-sans antialiased;
 
